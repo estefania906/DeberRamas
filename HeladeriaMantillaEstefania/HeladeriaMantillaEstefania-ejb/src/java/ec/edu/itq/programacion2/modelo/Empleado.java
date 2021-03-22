@@ -6,8 +6,6 @@
 package ec.edu.itq.programacion2.modelo;
 
 import java.io.Serializable;
-import java.math.BigInteger;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -22,9 +20,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -41,20 +36,16 @@ public class Empleado implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_empleado")
-    private Long idEmpleado;
-    @Column(name = "id_persona")
-    private BigInteger idPersona;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "horario_trabajo")
-    @Temporal(TemporalType.DATE)
-    private Date horarioTrabajo;
+    private Integer idEmpleado;
+    @Column(name = "estado")
+    private Boolean estado;
     @OneToMany(mappedBy = "idEmpleado", fetch = FetchType.LAZY)
-    private List<Venta> ventaList;
-    @OneToMany(mappedBy = "idEmpleado", fetch = FetchType.LAZY)
-    private List<Facturacion> facturacionList;
+    private List<CabeceraFactura> cabeceraFacturaList;
     @OneToMany(mappedBy = "idEmpleado", fetch = FetchType.LAZY)
     private List<Bodega> bodegaList;
+    @JoinColumn(name = "id_persona", referencedColumnName = "id_persona")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Persona idPersona;
     @JoinColumn(name = "id_puesto", referencedColumnName = "id_puesto")
     @ManyToOne(fetch = FetchType.LAZY)
     private Puesto idPuesto;
@@ -62,53 +53,32 @@ public class Empleado implements Serializable {
     public Empleado() {
     }
 
-    public Empleado(Long idEmpleado) {
+    public Empleado(Integer idEmpleado) {
         this.idEmpleado = idEmpleado;
     }
 
-    public Empleado(Long idEmpleado, Date horarioTrabajo) {
-        this.idEmpleado = idEmpleado;
-        this.horarioTrabajo = horarioTrabajo;
-    }
-
-    public Long getIdEmpleado() {
+    public Integer getIdEmpleado() {
         return idEmpleado;
     }
 
-    public void setIdEmpleado(Long idEmpleado) {
+    public void setIdEmpleado(Integer idEmpleado) {
         this.idEmpleado = idEmpleado;
     }
 
-    public BigInteger getIdPersona() {
-        return idPersona;
+    public Boolean getEstado() {
+        return estado;
     }
 
-    public void setIdPersona(BigInteger idPersona) {
-        this.idPersona = idPersona;
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
     }
 
-    public Date getHorarioTrabajo() {
-        return horarioTrabajo;
+    public List<CabeceraFactura> getCabeceraFacturaList() {
+        return cabeceraFacturaList;
     }
 
-    public void setHorarioTrabajo(Date horarioTrabajo) {
-        this.horarioTrabajo = horarioTrabajo;
-    }
-
-    public List<Venta> getVentaList() {
-        return ventaList;
-    }
-
-    public void setVentaList(List<Venta> ventaList) {
-        this.ventaList = ventaList;
-    }
-
-    public List<Facturacion> getFacturacionList() {
-        return facturacionList;
-    }
-
-    public void setFacturacionList(List<Facturacion> facturacionList) {
-        this.facturacionList = facturacionList;
+    public void setCabeceraFacturaList(List<CabeceraFactura> cabeceraFacturaList) {
+        this.cabeceraFacturaList = cabeceraFacturaList;
     }
 
     public List<Bodega> getBodegaList() {
@@ -117,6 +87,14 @@ public class Empleado implements Serializable {
 
     public void setBodegaList(List<Bodega> bodegaList) {
         this.bodegaList = bodegaList;
+    }
+
+    public Persona getIdPersona() {
+        return idPersona;
+    }
+
+    public void setIdPersona(Persona idPersona) {
+        this.idPersona = idPersona;
     }
 
     public Puesto getIdPuesto() {

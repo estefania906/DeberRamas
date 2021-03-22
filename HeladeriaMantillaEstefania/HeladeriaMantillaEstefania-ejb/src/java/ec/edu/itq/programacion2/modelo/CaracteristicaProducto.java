@@ -6,20 +6,17 @@
 package ec.edu.itq.programacion2.modelo;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -33,28 +30,26 @@ public class CaracteristicaProducto implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @NotNull
     @Column(name = "id_caracteristica_producto")
-    private Long idCaracteristicaProducto;
+    private Integer idCaracteristicaProducto;
     @JoinColumn(name = "id_caracteristica", referencedColumnName = "id_caracteristica")
     @OneToOne(fetch = FetchType.LAZY)
     private Caracteristica idCaracteristica;
-    @OneToMany(mappedBy = "idCaracteristicaProducto", fetch = FetchType.LAZY)
-    private List<Producto> productoList;
 
     public CaracteristicaProducto() {
     }
 
-    public CaracteristicaProducto(Long idCaracteristicaProducto) {
+    public CaracteristicaProducto(Integer idCaracteristicaProducto) {
         this.idCaracteristicaProducto = idCaracteristicaProducto;
     }
 
-    public Long getIdCaracteristicaProducto() {
+    public Integer getIdCaracteristicaProducto() {
         return idCaracteristicaProducto;
     }
 
-    public void setIdCaracteristicaProducto(Long idCaracteristicaProducto) {
+    public void setIdCaracteristicaProducto(Integer idCaracteristicaProducto) {
         this.idCaracteristicaProducto = idCaracteristicaProducto;
     }
 
@@ -64,14 +59,6 @@ public class CaracteristicaProducto implements Serializable {
 
     public void setIdCaracteristica(Caracteristica idCaracteristica) {
         this.idCaracteristica = idCaracteristica;
-    }
-
-    public List<Producto> getProductoList() {
-        return productoList;
-    }
-
-    public void setProductoList(List<Producto> productoList) {
-        this.productoList = productoList;
     }
 
     @Override

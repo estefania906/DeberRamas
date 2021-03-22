@@ -5,22 +5,31 @@
  */
 package ec.edu.itq.programacion2.dao;
 
-import ec.edu.itq.programacion2.generico.Generico;
+import ec.edu.itq.programacion2.generico.GenericoDao;
 import ec.edu.itq.programacion2.modelo.Empleado;
+import ec.edu.itq.programacion2.modelo.Producto;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
  * @author Estefi Mantilla
  */
 @Stateless
-public class EmpleadoDao extends Generico<Empleado> {
+public class EmpleadoDao extends GenericoDao<Empleado> {
 
+  
 
     public EmpleadoDao() {
         super(Empleado.class);
     }
     
+    public List<Empleado> buscarEmpleado() {
+        Query query = getEntityManager().createQuery("SELECT e FROM Empleado e WHERE e.estado=true");
+        List<Empleado> listaEmpleado = query.getResultList();
+        return listaEmpleado;
+    }
 }

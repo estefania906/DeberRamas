@@ -1,0 +1,380 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html
+     xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"
+    >
+   
+	<head>
+		<title>Heladería en Línea</title>
+      
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+                <link rel="stylesheet" href="resources/assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>Heladería</strong> Online UP</a>
+									<ul class="icons">
+										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+										<li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
+										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+										<li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Banner -->
+    
+                
+                <h:form id="form">
+
+    <div class="card">
+        <h5>Elije un producto</h5>
+        <b:panel>
+            <b:panelGrid columns="2">
+        <p:carousel value="" var="product" >
+            <div class="product">
+                <div class="product-grid-item p-p-5">
+                    <div class="product-grid-item-top">
+                        <div>
+                            <i class="pi pi-tag product-category-icon"/>
+                            <span class="product-category"> Pasteles </span>
+                        </div>
+                        <span class="product-badge"> </span>
+                    </div>
+                    <div class="product-grid-item-content">
+                        <p:graphicImage value="resources/images/pastel_mora.jpg" height="200px" width="200px"/>
+                        <div class="product-name"> Pastel de Mora</div>
+                        <div class="product-description"> Brazo de Pastel</div>
+                        <p:rating readonly="true" value=""/>
+                    </div>
+                    <div class="product-grid-item-bottom">
+                        <h:outputText value='$3.00' styleClass="product-price">
+                      
+                        </h:outputText>
+                        <p:commandButton type="button" value="Add To Cart"
+                                         icon="pi pi-shopping-cart"
+                                         disabled="">
+                        </p:commandButton>
+                    </div>
+                    <div class="product-grid-item p-p-5">
+                    <div class="product-grid-item-top">
+                        <div>
+                            <i class="pi pi-tag product-category-icon"/>
+                            <span class="product-category"> Helados </span>
+                        </div>
+                        <span class="product-badge"> </span>
+                    </div>
+                    <div class="product-grid-item-content">
+                        <p:graphicImage value="resources/images/vainilla_como.jpg" height="200px" width="200px"/>
+                        <div class="product-name"> Copa de Helado de Vainilla</div>
+                        <div class="product-description"> Copa de Helado</div>
+                        <p:rating readonly="true" value=""/>
+                    </div>
+                    <div class="product-grid-item-bottom">
+                        <h:outputText value='$2.00' styleClass="product-price">
+                      
+                        </h:outputText>
+                        <p:commandButton type="button" value="Add To Cart"
+                                         icon="pi pi-shopping-cart"
+                                         disabled="">
+                        </p:commandButton>
+                    </div>
+                </div>
+                    <div class="product-grid-item p-p-5">
+                    <div class="product-grid-item-top">
+                        <div>
+                            <i class="pi pi-tag product-category-icon"/>
+                            <span class="product-category"> Helados </span>
+                        </div>
+                        <span class="product-badge"> </span>
+                    </div>
+                    <div class="product-grid-item-content">
+                        <p:graphicImage value="resources/images/ensalada_helado.jpg" height="200px" width="200px"/>
+                        <div class="product-name">Ensalada de frutas con Helado </div>
+                        <div class="product-description"> Ensalada con Helado</div>
+                        <p:rating readonly="true" value=""/>
+                    </div>
+                    <div class="product-grid-item-bottom">
+                        <h:outputText value='$3.50' styleClass="product-price">
+                      
+                        </h:outputText>
+                        <p:commandButton type="button" value="Add To Cart"
+                                         icon="pi pi-shopping-cart"
+                                         disabled="">
+                        </p:commandButton>
+                    </div>
+                </div>
+                    <div class="product-grid-item p-p-5">
+                    <div class="product-grid-item-top">
+                        <div>
+                            <i class="pi pi-tag product-category-icon"/>
+                            <span class="product-category"> Helados </span>
+                        </div>
+                        <span class="product-badge"> </span>
+                    </div>
+                    <div class="product-grid-item-content">
+                        <p:graphicImage value="resources/images/helado_mixto.jpg" height="200px" width="200px"/>
+                        <div class="product-name">Copa de Helado Mixto</div>
+                        <div class="product-description">Helado Mixto</div>
+                        <p:rating readonly="true" value=""/>
+                    </div>
+                    <div class="product-grid-item-bottom">
+                        <h:outputText value='$2.50' styleClass="product-price">
+                      
+                        </h:outputText>
+                        <p:commandButton type="button" value="Add To Cart"
+                                         icon="pi pi-shopping-cart"
+                                         disabled="">
+                        </p:commandButton>
+                    </div>
+                </div>
+                    
+                     <div class="product-grid-item p-p-5">
+                    <div class="product-grid-item-top">
+                        <div>
+                            <i class="pi pi-tag product-category-icon"/>
+                            <span class="product-category"> Frappe </span>
+                        </div>
+                        <span class="product-badge"> </span>
+                    </div>
+                    <div class="product-grid-item-content">
+                        <p:graphicImage value="resources/images/frappe_caramelo.jpg" height="200px" width="200px"/>
+                        <div class="product-name">Frappe de Caramelo</div>
+                        <div class="product-description">Frappe Helado</div>
+                        <p:rating readonly="true" value=""/>
+                    </div>
+                    <div class="product-grid-item-bottom">
+                        <h:outputText value='$4.00' styleClass="product-price">
+                      
+                        </h:outputText>
+                        <p:commandButton type="button" value="Add To Cart"
+                                         icon="pi pi-shopping-cart"
+                                         disabled="">
+                        </p:commandButton>
+                    </div>
+                </div>
+                     <div class="product-grid-item p-p-5">
+                    <div class="product-grid-item-top">
+                        <div>
+                            <i class="pi pi-tag product-category-icon"/>
+                            <span class="product-category"> Cafe </span>
+                        </div>
+                        <span class="product-badge"> </span>
+                    </div>
+                    <div class="product-grid-item-content">
+                        <p:graphicImage value="resources/images/cafe_expreso.jpg" height="200px" width="200px"/>
+                        <div class="product-name">Cafe Expreso</div>
+                        <div class="product-description">Caliente</div>
+                        <p:rating readonly="true" value=""/>
+                    </div>
+                    <div class="product-grid-item-bottom">
+                        <h:outputText value='$1.00' styleClass="product-price">
+                      
+                        </h:outputText>
+                        <p:commandButton type="button" value="Add To Cart"
+                                         icon="pi pi-shopping-cart"
+                                         disabled="">
+                        </p:commandButton>
+                    </div>
+                </div>
+                     <div class="product-grid-item p-p-5">
+                    <div class="product-grid-item-top">
+                        <div>
+                            <i class="pi pi-tag product-category-icon"/>
+                            <span class="product-category"> Helados </span>
+                        </div>
+                        <span class="product-badge"> </span>
+                    </div>
+                    <div class="product-grid-item-content">
+                        <p:graphicImage value="resources/images/helado_yogurt.jpg" height="200px" width="200px"/>
+                        <div class="product-name">Helado de Yogurt</div>
+                        <div class="product-description">Frio</div>
+                        <p:rating readonly="true" value=""/>
+                    </div>
+                    <div class="product-grid-item-bottom">
+                        <h:outputText value='$2.50' styleClass="product-price">
+                      
+                        </h:outputText>
+                        <p:commandButton type="button" value="Add To Cart"
+                                         icon="pi pi-shopping-cart"
+                                         disabled="">
+                        </p:commandButton>
+                    </div>
+                </div>
+                    <div class="product-grid-item p-p-5">
+                    <div class="product-grid-item-top">
+                        <div>
+                            <i class="pi pi-tag product-category-icon"/>
+                            <span class="product-category"> Helados </span>
+                        </div>
+                        <span class="product-badge"> </span>
+                    </div>
+                    <div class="product-grid-item-content">
+                        <p:graphicImage value="resources/images/helado_galleta.jpg" height="200px" width="200px"/>
+                        <div class="product-name">Helado de Galleta</div>
+                        <div class="product-description">1 Pedazo</div>
+                        <p:rating readonly="true" value=""/>
+                    </div>
+                    <div class="product-grid-item-bottom">
+                        <h:outputText value='$2.50' styleClass="product-price">
+                      
+                        </h:outputText>
+                        <p:commandButton type="button" value="Add To Cart"
+                                         icon="pi pi-shopping-cart"
+                                         disabled="">
+                        </p:commandButton>
+                    </div>
+                </div>
+                    <div class="product-grid-item p-p-5">
+                    <div class="product-grid-item-top">
+                        <div>
+                            <i class="pi pi-tag product-category-icon"/>
+                            <span class="product-category"> Helados </span>
+                        </div>
+                        <span class="product-badge"> </span>
+                    </div>
+                    <div class="product-grid-item-content">
+                        <p:graphicImage value="resources/images/banana_split.jpg" height="200px" width="200px"/>
+                        <div class="product-name">Banana Split</div>
+                        <div class="product-description">Frio</div>
+                        <p:rating readonly="true" value=""/>
+                    </div>
+                    <div class="product-grid-item-bottom">
+                        <h:outputText value='$4.50' styleClass="product-price">
+                      
+                        </h:outputText>
+                        <p:commandButton type="button" value="Add To Cart"
+                                         icon="pi pi-shopping-cart"
+                                         disabled="">
+                        </p:commandButton>
+                    </div>
+                </div>
+                    
+                    
+                </div>
+            </div>
+           
+        </p:carousel>
+     </b:panelGrid>
+             </b:panel>
+                </div>
+    
+       
+ </h:form>
+                                                        
+    </div>
+                                                          
+                                        </div>
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="post" action="#">
+										<input type="text" name="query" id="query" placeholder="Search" />
+									</form>
+								</section>
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="generic.html">Negocios</a></li>
+										<li><a href="elements.html">Elementos</a></li>
+										<li>
+											<span class="opener">Administradores</span>
+											<ul>
+												<li><a href="pages/bodega.xhtml">Agrega Bodegas</a></li>
+												<li><a href="pages/categoria_producto.xhtml">Agrega Categrías</a></li>
+												<li><a href="pages/producto.xhtml">Agrega Productos</a></li>
+                                                                                                <li><a href="pages/caracteristica.xhtml">Agrega Características</a></li>
+												<li><a href="pages/detallebodega.xhtml">Controla el Kardex</a></li>
+                                                                                                <li><a href="pages/empleado.xhtml">Agrega Personal</a></li>
+                                                                                                <li><a href="pages/puesto.xhtml">Agrega Cargos</a></li>
+                                                                                                <li><a href="pages/proveedor.xhtml">Agrega Proveedores</a></li>
+											</ul>
+										</li>
+										<li><a href="pages/detallefactura.xhtml">Facturación</a></li>
+										
+									</ul>
+								</nav>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Pilares</h2>
+									</header>
+									<div class="mini-posts">
+										<article>
+											<a href="#" class="image"><img src="resources/images/pic07.jpg" alt="" /></a>
+											<p>Productos pensados para ti.</p>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="resources/images/pic08.jpg" alt="" /></a>
+											<p>La mejor preparación de sabres.</p>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="resources/images/pic09.jpg" alt="" /></a>
+											<p>El servicio más preparado para ti.</p>
+										</article>
+									</div>
+									<ul class="actions">
+										<li><a href="#" class="button">Más</a></li>
+									</ul>
+								</section>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Contáctanos</h2>
+									</header>
+									<p>Satisfacer el Gusto a través del sabor, variedad y buen servicio en helados y paletas. Ser de las principales empresas de helados reconocida a nivel regional en constante crecimiento, con solidez financiera y a la vanguardia en tecnología, con operación estandarizada y medible.</p>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><a href="#">heladeriaonlinaup@untitled.tld</a></li>
+										<li class="icon solid fa-phone">(+593) 99-9176087</li>
+										<li class="icon solid fa-home">1234 Calle Islas Canatias #8254<br />
+										Valencia, TN 589457</li>
+									</ul>
+								</section>
+
+							<!-- Footer -->
+	
+						</div>
+					</div>
+
+                                
+                                
+			</div>
+
+		<!-- Scripts -->
+			<script src="resources/assets/js/jquery.min.js"></script>
+			<script src="resources/assets/js/browser.min.js"></script>
+			<script src="resources/assets/js/breakpoints.min.js"></script>
+			<script src="resources/assets/js/util.js"></script>
+			<script src="resources/assets/js/main.js"></script>
+
+	</body>
+</html>

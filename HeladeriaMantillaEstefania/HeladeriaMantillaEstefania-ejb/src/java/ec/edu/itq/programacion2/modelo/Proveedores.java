@@ -6,19 +6,15 @@
 package ec.edu.itq.programacion2.modelo;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -36,57 +32,35 @@ public class Proveedores implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_proveedor")
-    private Long idProveedor;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
+    private Integer idProveedor;
+    @Size(max = 100)
     @Column(name = "razon_social")
     private String razonSocial;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
+    @Size(max = 20)
     @Column(name = "sector_comercial")
     private String sectorComercial;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
+    @Size(max = 20)
     @Column(name = "nombre")
     private String nombre;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
+    @Size(max = 100)
     @Column(name = "direccion")
     private String direccion;
-    @Basic(optional = false)
-    @NotNull
+    @Size(max = 50)
     @Column(name = "telefono")
-    private long telefono;
-    @OneToMany(mappedBy = "idProveedor", fetch = FetchType.LAZY)
-    private List<Bodega> bodegaList;
-    @OneToMany(mappedBy = "idProveedor", fetch = FetchType.LAZY)
-    private List<DetalleBodega> detalleBodegaList;
+    private String telefono;
 
     public Proveedores() {
     }
 
-    public Proveedores(Long idProveedor) {
+    public Proveedores(Integer idProveedor) {
         this.idProveedor = idProveedor;
     }
 
-    public Proveedores(Long idProveedor, String razonSocial, String sectorComercial, String nombre, String direccion, long telefono) {
-        this.idProveedor = idProveedor;
-        this.razonSocial = razonSocial;
-        this.sectorComercial = sectorComercial;
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.telefono = telefono;
-    }
-
-    public Long getIdProveedor() {
+    public Integer getIdProveedor() {
         return idProveedor;
     }
 
-    public void setIdProveedor(Long idProveedor) {
+    public void setIdProveedor(Integer idProveedor) {
         this.idProveedor = idProveedor;
     }
 
@@ -122,28 +96,12 @@ public class Proveedores implements Serializable {
         this.direccion = direccion;
     }
 
-    public long getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(long telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
-
-    public List<Bodega> getBodegaList() {
-        return bodegaList;
-    }
-
-    public void setBodegaList(List<Bodega> bodegaList) {
-        this.bodegaList = bodegaList;
-    }
-
-    public List<DetalleBodega> getDetalleBodegaList() {
-        return detalleBodegaList;
-    }
-
-    public void setDetalleBodegaList(List<DetalleBodega> detalleBodegaList) {
-        this.detalleBodegaList = detalleBodegaList;
     }
 
     @Override

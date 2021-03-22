@@ -11,12 +11,13 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -31,15 +32,15 @@ public class Puesto implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id_puesto")
     private Integer idPuesto;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
+    @Size(max = 20)
     @Column(name = "nombre")
     private String nombre;
+    @Column(name = "estado")
+    private Boolean estado;
     @OneToMany(mappedBy = "idPuesto", fetch = FetchType.LAZY)
     private List<Empleado> empleadoList;
 
@@ -48,11 +49,6 @@ public class Puesto implements Serializable {
 
     public Puesto(Integer idPuesto) {
         this.idPuesto = idPuesto;
-    }
-
-    public Puesto(Integer idPuesto, String nombre) {
-        this.idPuesto = idPuesto;
-        this.nombre = nombre;
     }
 
     public Integer getIdPuesto() {
@@ -69,6 +65,14 @@ public class Puesto implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
     }
 
     public List<Empleado> getEmpleadoList() {

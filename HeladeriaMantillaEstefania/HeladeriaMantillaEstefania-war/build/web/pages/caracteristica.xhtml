@@ -1,0 +1,46 @@
+<ui:composition 
+    template="../template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:b="http://bootsfaces.net/ui">
+    <ui:define name="content">
+        <h:form id="frmCaracteristica">
+            <p:messages id="msg" />
+            <b:panel>
+                <b:panelGrid columns="1">
+          
+                    
+                    <p:outputLabel value="Nombre" />
+                    <p:inputText value="#{caracteristicaControl.caracteristica.nombre}"/>
+                     <p:outputLabel value="Descripcion" />
+                     <p:inputText value="#{caracteristicaControl.caracteristica.descripcion}" />
+                    
+                     <p:commandButton value="Guardar" action="#{caracteristicaControl.guardar()}" 
+                                     update="@form" />
+                </b:panelGrid>
+            </b:panel> 
+            <b:panel>
+                <p:dataTable value="#{caracteristicaControl.listCaracteristica}" var="caracteristica" >
+                    <p:column headerText=" Caracteristica del Producto" >
+                        <p:outputLabel value="#{caracteristica.idCaracteristica}" /> 
+                    </p:column>
+                    <p:column headerText="Nombre" >
+                        <p:outputLabel value="#{caracteristica.nombre}"/> 
+                    </p:column>
+              <p:column headerText="Descripcion" >
+                  <p:outputLabel value="#{caracteristica.descripcion}"/> 
+                    </p:column>
+                    <p:column headerText="Actualizar" >
+                        <p:commandButton value="Actualizar" action="#{caracteristicaControl.actualizar(caracteristica)}"
+                                         process="@this" update="@form"/> 
+                    </p:column>
+                </p:dataTable>
+                
+            </b:panel>
+            
+        </h:form>
+    </ui:define>
+</ui:composition>

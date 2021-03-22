@@ -5,22 +5,31 @@
  */
 package ec.edu.itq.programacion2.dao;
 
-import ec.edu.itq.programacion2.generico.Generico;
+import ec.edu.itq.programacion2.generico.GenericoDao;
 import ec.edu.itq.programacion2.modelo.CategoriaProducto;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
  * @author Estefi Mantilla
  */
 @Stateless
-public class CategoriaProductoDao extends Generico<CategoriaProducto> {
+public class CategoriaProductoDao extends GenericoDao<CategoriaProducto> {
 
+   
 
     public CategoriaProductoDao() {
         super(CategoriaProducto.class);
     }
     
+    public List<CategoriaProducto> buscarCategoriaProducto() {
+        Query query = getEntityManager().createQuery("SELECT cp FROM CategoriaProducto cp WHERE cp.estado=true");
+        List<CategoriaProducto> listaCategoriaProducto = query.getResultList();
+        return listaCategoriaProducto;
+    }
+
 }

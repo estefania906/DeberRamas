@@ -1,0 +1,56 @@
+<ui:composition 
+    template="../template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:b="http://bootsfaces.net/ui">
+    <ui:define name="content">
+        <h:form id="frmProducto">
+            <p:messages id="msg" />
+            <b:panel>
+                <b:panelGrid columns="2">
+                    
+                    <p:outputLabel value="Nombre" />
+                    <p:inputText value="#{productoControl.producto.nombre}" />
+                     <p:outputLabel value="Precio" />
+                     <p:inputText value="#{productoControl.producto.precion}" />
+                    <p:selectOneMenu id="option" value="#{productoControl.idCategoriaProducto}" >
+                        <f:selectItem itemLabel="Seleccione Categoría de Producto" itemValue=""/>
+                        <f:selectItems value="#{productoControl.selectItemCategoriaProducto}" var="item" itemValue="#{item.value}" itemLabel="#{item.label}" />
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Estado" />
+                    <p:selectBooleanCheckbox value="#{productoControl.producto.estado}"/>
+                    <p:commandButton value="Guardar" action="#{productoControl.guardar()}" 
+                                     update="@form" />
+                </b:panelGrid>
+            </b:panel> 
+            <b:panel>
+                <p:dataTable value="#{productoControl.listaProducto}" var="producto" >
+                    <p:column headerText="Producto" >
+                        <p:outputLabel value="#{producto.idProducto}" /> 
+                    </p:column>
+                    <p:column headerText="Nombre" >
+                        <p:outputLabel value="#{producto.nombre}"/> 
+                    </p:column>
+              <p:column headerText="Categoria" >
+                  <p:outputLabel value="#{producto.idCategoriaProducto.nombre}"/> 
+                    </p:column>
+                    <p:column headerText="Precio de Venta" >
+                        <p:outputLabel value="#{producto.precion}"/> 
+                    </p:column>
+                    <p:column headerText="Estado" >
+                        <p:outputLabel value="#{producto.estado}" /> 
+                    </p:column>
+                    <p:column headerText="Actualizar" >
+                        <p:commandButton value="Actualizar" action="#{productoControl.actualizar(producto)}"
+                                         process="@this" update="@form"/> 
+                    </p:column>
+                </p:dataTable>
+                
+            </b:panel>
+            
+        </h:form>
+    </ui:define>
+</ui:composition>

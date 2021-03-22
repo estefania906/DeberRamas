@@ -1,0 +1,66 @@
+<ui:composition 
+    template="../template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:b="http://bootsfaces.net/ui">
+    <ui:define name="content">
+        <h:form id="frmEmpleado">
+            <p:messages id="msg" />
+            <b:panel>
+                <b:panelGrid columns="2">
+               
+                    
+                    <p:outputLabel value="Nombres" />
+                    <p:inputText value="#{empleadoControl.empleado.idPersona.nombres}" />
+                    <p:outputLabel value="Apellidos" />
+                    <p:inputText value="#{empleadoControl.empleado.idPersona.apellidos}"/>
+                    <p:outputLabel value="Dirección" />
+                    <p:inputText value="#{empleadoControl.empleado.idPersona.direccion}"/>
+                    <p:outputLabel value="Teléfono" />
+                    <p:inputText value="#{empleadoControl.empleado.idPersona.telefono}"/>
+                    <p:outputLabel value="Correo" />
+                    <p:inputText value="#{empleadoControl.empleado.idPersona.correo}"/>
+                  
+                    <p:selectOneMenu id="option" value="#{empleadoControl.idPuesto}" >
+                        <f:selectItem itemLabel="Seleccione Puesto" itemValue=""/>
+                        <f:selectItems value="#{empleadoControl.selectItemPuesto}" var="item" itemValue="#{item.value}" itemLabel="#{item.label}" />
+                    </p:selectOneMenu>
+                    
+                   <p:selectBooleanCheckbox value="#{empleadoControl.empleado.estado}"/>
+                   <p:commandButton value="Guardar" action="#{empleadoControl.guardar()}" 
+                                     update="@form" />
+                </b:panelGrid>
+            </b:panel> 
+            <b:panel>
+                <p:dataTable value="#{empleadoControl.listaEmpleado}" var="empleado" >
+                    <p:column headerText="Nombre" >
+                        <p:outputLabel value="#{empleado.idPersona.nombres}" /> 
+                    </p:column>
+                    <p:column headerText="Apellido" >
+                        <p:outputLabel value="#{empleado.idPersona.apellidos}"/> 
+                    </p:column>
+                    <p:column headerText="Direccion" >
+                        <p:outputLabel value="#{empleado.idPersona.direccion}" /> 
+                    </p:column>
+                    <p:column headerText="Telefono" >
+                        <p:outputLabel value="#{empleado.idPersona.telefono}" /> 
+                    </p:column>
+                    <p:column headerText="Puesto" >
+                        <p:outputLabel value="#{empleado.idPuesto.nombre}" /> 
+                    </p:column>
+                    <p:column headerText="Estado" >
+                        <p:outputLabel value="#{empleado.estado}" /> 
+                    </p:column>
+                </p:dataTable>
+                 <p:column headerText="Actualizar" >
+                     <p:commandButton value="Actualizar" action="#{empleadoControl.actualizar(empleado)}"
+                                         process="@this" update="@form"/> 
+                    </p:column>
+            </b:panel>
+            
+        </h:form>
+    </ui:define>
+</ui:composition>

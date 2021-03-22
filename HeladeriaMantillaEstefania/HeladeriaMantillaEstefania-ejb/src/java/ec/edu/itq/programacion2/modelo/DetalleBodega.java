@@ -6,8 +6,6 @@
 package ec.edu.itq.programacion2.modelo;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,11 +17,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -40,142 +35,100 @@ public class DetalleBodega implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_detalle_bodega")
-    private Long idDetalleBodega;
-    @Basic(optional = false)
-    @NotNull
+    private Integer idDetalleBodega;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "precio_compra")
-    private double precioCompra;
-    @Basic(optional = false)
-    @NotNull
+    private Double precioCompra;
     @Column(name = "precio_venta")
-    private double precioVenta;
-    @Basic(optional = false)
-    @NotNull
+    private Double precioVenta;
     @Column(name = "stock_inicial")
-    private long stockInicial;
-    @Basic(optional = false)
-    @NotNull
+    private Integer stockInicial;
     @Column(name = "stock_final")
-    private long stockFinal;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "fecha_produccion")
-    @Temporal(TemporalType.DATE)
-    private Date fechaProduccion;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "fecha_vencimiento")
-    @Temporal(TemporalType.DATE)
-    private Date fechaVencimiento;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "entradas")
-    private int entradas;
-    @Basic(optional = false)
-    @NotNull
+    private Integer stockFinal;
     @Column(name = "salidas")
-    private int salidas;
+    private Integer salidas;
+    @Size(max = 20)
+    @Column(name = "fecha_produccion")
+    private String fechaProduccion;
+    @Size(max = 20)
+    @Column(name = "fecha_vencimiento")
+    private String fechaVencimiento;
     @JoinColumn(name = "id_bodega", referencedColumnName = "id_bodega")
     @ManyToOne(fetch = FetchType.LAZY)
     private Bodega idBodega;
     @JoinColumn(name = "id_producto", referencedColumnName = "id_producto")
     @ManyToOne(fetch = FetchType.LAZY)
     private Producto idProducto;
-    @JoinColumn(name = "id_proveedor", referencedColumnName = "id_proveedor")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Proveedores idProveedor;
-    @OneToMany(mappedBy = "idDetalleBodega", fetch = FetchType.LAZY)
-    private List<DetalleDocumentacion> detalleDocumentacionList;
 
     public DetalleBodega() {
     }
 
-    public DetalleBodega(Long idDetalleBodega) {
+    public DetalleBodega(Integer idDetalleBodega) {
         this.idDetalleBodega = idDetalleBodega;
     }
 
-    public DetalleBodega(Long idDetalleBodega, double precioCompra, double precioVenta, long stockInicial, long stockFinal, Date fechaProduccion, Date fechaVencimiento, int entradas, int salidas) {
-        this.idDetalleBodega = idDetalleBodega;
-        this.precioCompra = precioCompra;
-        this.precioVenta = precioVenta;
-        this.stockInicial = stockInicial;
-        this.stockFinal = stockFinal;
-        this.fechaProduccion = fechaProduccion;
-        this.fechaVencimiento = fechaVencimiento;
-        this.entradas = entradas;
-        this.salidas = salidas;
-    }
-
-    public Long getIdDetalleBodega() {
+    public Integer getIdDetalleBodega() {
         return idDetalleBodega;
     }
 
-    public void setIdDetalleBodega(Long idDetalleBodega) {
+    public void setIdDetalleBodega(Integer idDetalleBodega) {
         this.idDetalleBodega = idDetalleBodega;
     }
 
-    public double getPrecioCompra() {
+    public Double getPrecioCompra() {
         return precioCompra;
     }
 
-    public void setPrecioCompra(double precioCompra) {
+    public void setPrecioCompra(Double precioCompra) {
         this.precioCompra = precioCompra;
     }
 
-    public double getPrecioVenta() {
+    public Double getPrecioVenta() {
         return precioVenta;
     }
 
-    public void setPrecioVenta(double precioVenta) {
+    public void setPrecioVenta(Double precioVenta) {
         this.precioVenta = precioVenta;
     }
 
-    public long getStockInicial() {
+    public Integer getStockInicial() {
         return stockInicial;
     }
 
-    public void setStockInicial(long stockInicial) {
+    public void setStockInicial(Integer stockInicial) {
         this.stockInicial = stockInicial;
     }
 
-    public long getStockFinal() {
+    public Integer getStockFinal() {
         return stockFinal;
     }
 
-    public void setStockFinal(long stockFinal) {
+    public void setStockFinal(Integer stockFinal) {
         this.stockFinal = stockFinal;
     }
 
-    public Date getFechaProduccion() {
-        return fechaProduccion;
-    }
-
-    public void setFechaProduccion(Date fechaProduccion) {
-        this.fechaProduccion = fechaProduccion;
-    }
-
-    public Date getFechaVencimiento() {
-        return fechaVencimiento;
-    }
-
-    public void setFechaVencimiento(Date fechaVencimiento) {
-        this.fechaVencimiento = fechaVencimiento;
-    }
-
-    public int getEntradas() {
-        return entradas;
-    }
-
-    public void setEntradas(int entradas) {
-        this.entradas = entradas;
-    }
-
-    public int getSalidas() {
+    public Integer getSalidas() {
         return salidas;
     }
 
-    public void setSalidas(int salidas) {
+    public void setSalidas(Integer salidas) {
         this.salidas = salidas;
+    }
+
+    public String getFechaProduccion() {
+        return fechaProduccion;
+    }
+
+    public void setFechaProduccion(String fechaProduccion) {
+        this.fechaProduccion = fechaProduccion;
+    }
+
+    public String getFechaVencimiento() {
+        return fechaVencimiento;
+    }
+
+    public void setFechaVencimiento(String fechaVencimiento) {
+        this.fechaVencimiento = fechaVencimiento;
     }
 
     public Bodega getIdBodega() {
@@ -192,22 +145,6 @@ public class DetalleBodega implements Serializable {
 
     public void setIdProducto(Producto idProducto) {
         this.idProducto = idProducto;
-    }
-
-    public Proveedores getIdProveedor() {
-        return idProveedor;
-    }
-
-    public void setIdProveedor(Proveedores idProveedor) {
-        this.idProveedor = idProveedor;
-    }
-
-    public List<DetalleDocumentacion> getDetalleDocumentacionList() {
-        return detalleDocumentacionList;
-    }
-
-    public void setDetalleDocumentacionList(List<DetalleDocumentacion> detalleDocumentacionList) {
-        this.detalleDocumentacionList = detalleDocumentacionList;
     }
 
     @Override

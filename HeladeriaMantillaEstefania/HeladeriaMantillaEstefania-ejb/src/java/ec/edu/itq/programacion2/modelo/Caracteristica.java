@@ -17,7 +17,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -35,37 +34,28 @@ public class Caracteristica implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_caracteristica")
-    private Long idCaracteristica;
+    private Integer idCaracteristica;
     @Size(max = 20)
     @Column(name = "nombre")
     private String nombre;
-    @Size(max = 100)
+    @Size(max = 200)
     @Column(name = "descripcion")
     private String descripcion;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "cantidad")
-    private short cantidad;
     @OneToOne(mappedBy = "idCaracteristica", fetch = FetchType.LAZY)
     private CaracteristicaProducto caracteristicaProducto;
 
     public Caracteristica() {
     }
 
-    public Caracteristica(Long idCaracteristica) {
+    public Caracteristica(Integer idCaracteristica) {
         this.idCaracteristica = idCaracteristica;
     }
 
-    public Caracteristica(Long idCaracteristica, short cantidad) {
-        this.idCaracteristica = idCaracteristica;
-        this.cantidad = cantidad;
-    }
-
-    public Long getIdCaracteristica() {
+    public Integer getIdCaracteristica() {
         return idCaracteristica;
     }
 
-    public void setIdCaracteristica(Long idCaracteristica) {
+    public void setIdCaracteristica(Integer idCaracteristica) {
         this.idCaracteristica = idCaracteristica;
     }
 
@@ -83,14 +73,6 @@ public class Caracteristica implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public short getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(short cantidad) {
-        this.cantidad = cantidad;
     }
 
     public CaracteristicaProducto getCaracteristicaProducto() {

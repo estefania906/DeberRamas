@@ -20,7 +20,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -38,111 +37,45 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_cliente")
-    private Long idCliente;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
-    @Column(name = "empresa")
-    private String empresa;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "numero_visitas")
-    private short numeroVisitas;
+    private Integer idCliente;
+    @Size(max = 20)
+    @Column(name = "cedula")
+    private String cedula;
     @OneToMany(mappedBy = "idCliente", fetch = FetchType.LAZY)
-    private List<Venta> ventaList;
-    @OneToMany(mappedBy = "idCliente", fetch = FetchType.LAZY)
-    private List<Facturacion> facturacionList;
-    @JoinColumn(name = "id_estado_civil", referencedColumnName = "id_estado")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private EstadoCivil idEstadoCivil;
-    @JoinColumn(name = "id_genero", referencedColumnName = "id_genero")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Genero idGenero;
-    @JoinColumn(name = "id_nacionalidad", referencedColumnName = "id_nacionalidad")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Nacionalidad idNacionalidad;
+    private List<CabeceraFactura> cabeceraFacturaList;
     @JoinColumn(name = "id_persona", referencedColumnName = "id_persona")
     @ManyToOne(fetch = FetchType.LAZY)
     private Persona idPersona;
-    @JoinColumn(name = "id_tipo_cliente", referencedColumnName = "id_tipo_cliente")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private TipoCliente idTipoCliente;
 
     public Cliente() {
     }
 
-    public Cliente(Long idCliente) {
+    public Cliente(Integer idCliente) {
         this.idCliente = idCliente;
     }
 
-    public Cliente(Long idCliente, String empresa, short numeroVisitas) {
-        this.idCliente = idCliente;
-        this.empresa = empresa;
-        this.numeroVisitas = numeroVisitas;
-    }
-
-    public Long getIdCliente() {
+    public Integer getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(Long idCliente) {
+    public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
     }
 
-    public String getEmpresa() {
-        return empresa;
+    public String getCedula() {
+        return cedula;
     }
 
-    public void setEmpresa(String empresa) {
-        this.empresa = empresa;
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
 
-    public short getNumeroVisitas() {
-        return numeroVisitas;
+    public List<CabeceraFactura> getCabeceraFacturaList() {
+        return cabeceraFacturaList;
     }
 
-    public void setNumeroVisitas(short numeroVisitas) {
-        this.numeroVisitas = numeroVisitas;
-    }
-
-    public List<Venta> getVentaList() {
-        return ventaList;
-    }
-
-    public void setVentaList(List<Venta> ventaList) {
-        this.ventaList = ventaList;
-    }
-
-    public List<Facturacion> getFacturacionList() {
-        return facturacionList;
-    }
-
-    public void setFacturacionList(List<Facturacion> facturacionList) {
-        this.facturacionList = facturacionList;
-    }
-
-    public EstadoCivil getIdEstadoCivil() {
-        return idEstadoCivil;
-    }
-
-    public void setIdEstadoCivil(EstadoCivil idEstadoCivil) {
-        this.idEstadoCivil = idEstadoCivil;
-    }
-
-    public Genero getIdGenero() {
-        return idGenero;
-    }
-
-    public void setIdGenero(Genero idGenero) {
-        this.idGenero = idGenero;
-    }
-
-    public Nacionalidad getIdNacionalidad() {
-        return idNacionalidad;
-    }
-
-    public void setIdNacionalidad(Nacionalidad idNacionalidad) {
-        this.idNacionalidad = idNacionalidad;
+    public void setCabeceraFacturaList(List<CabeceraFactura> cabeceraFacturaList) {
+        this.cabeceraFacturaList = cabeceraFacturaList;
     }
 
     public Persona getIdPersona() {
@@ -151,14 +84,6 @@ public class Cliente implements Serializable {
 
     public void setIdPersona(Persona idPersona) {
         this.idPersona = idPersona;
-    }
-
-    public TipoCliente getIdTipoCliente() {
-        return idTipoCliente;
-    }
-
-    public void setIdTipoCliente(TipoCliente idTipoCliente) {
-        this.idTipoCliente = idTipoCliente;
     }
 
     @Override

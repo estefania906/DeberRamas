@@ -6,7 +6,6 @@
 package ec.edu.itq.programacion2.modelo;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -21,9 +20,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -41,71 +37,57 @@ public class Bodega implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_bodega")
-    private Long idBodega;
-    @Column(name = "fecha")
-    @Temporal(TemporalType.DATE)
-    private Date fecha;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
-    @Column(name = "tipo_comprobante")
-    private String tipoComprobante;
-    @Basic(optional = false)
-    @NotNull
+    private Integer idBodega;
+    @Size(max = 20)
+    @Column(name = "direccion")
+    private String direccion;
     @Column(name = "serie")
-    private int serie;
+    private Integer serie;
+    @Column(name = "estado")
+    private Boolean estado;
     @JoinColumn(name = "id_empleado", referencedColumnName = "id_empleado")
     @ManyToOne(fetch = FetchType.LAZY)
     private Empleado idEmpleado;
-    @JoinColumn(name = "id_proveedor", referencedColumnName = "id_proveedor")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Proveedores idProveedor;
     @OneToMany(mappedBy = "idBodega", fetch = FetchType.LAZY)
     private List<DetalleBodega> detalleBodegaList;
 
     public Bodega() {
     }
 
-    public Bodega(Long idBodega) {
+    public Bodega(Integer idBodega) {
         this.idBodega = idBodega;
     }
 
-    public Bodega(Long idBodega, String tipoComprobante, int serie) {
-        this.idBodega = idBodega;
-        this.tipoComprobante = tipoComprobante;
-        this.serie = serie;
-    }
-
-    public Long getIdBodega() {
+    public Integer getIdBodega() {
         return idBodega;
     }
 
-    public void setIdBodega(Long idBodega) {
+    public void setIdBodega(Integer idBodega) {
         this.idBodega = idBodega;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
-    public String getTipoComprobante() {
-        return tipoComprobante;
-    }
-
-    public void setTipoComprobante(String tipoComprobante) {
-        this.tipoComprobante = tipoComprobante;
-    }
-
-    public int getSerie() {
+    public Integer getSerie() {
         return serie;
     }
 
-    public void setSerie(int serie) {
+    public void setSerie(Integer serie) {
         this.serie = serie;
+    }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
     }
 
     public Empleado getIdEmpleado() {
@@ -114,14 +96,6 @@ public class Bodega implements Serializable {
 
     public void setIdEmpleado(Empleado idEmpleado) {
         this.idEmpleado = idEmpleado;
-    }
-
-    public Proveedores getIdProveedor() {
-        return idProveedor;
-    }
-
-    public void setIdProveedor(Proveedores idProveedor) {
-        this.idProveedor = idProveedor;
     }
 
     public List<DetalleBodega> getDetalleBodegaList() {

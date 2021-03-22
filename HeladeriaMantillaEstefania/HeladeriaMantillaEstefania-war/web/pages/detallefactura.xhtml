@@ -1,0 +1,109 @@
+<ui:composition 
+    template="../template2.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:b="http://bootsfaces.net/ui">
+    <ui:define name="content">
+        <h:form id="frmDetalleFactura">
+            <p:messages id="msg" />
+            <b:panel>
+                <b:panelGrid columns="2">
+      
+                    
+                    <p:outputLabel value="Nombres" />
+                    <p:inputText value="#{clienteControl.cliente.idPersona.nombres}" />
+                    <p:outputLabel value="Apellidos" />
+                    <p:inputText value="#{clienteControl.cliente.idPersona.apellidos}"/>
+                    <p:outputLabel value="Dirección" />
+                    <p:inputText value="#{clienteControl.cliente.idPersona.direccion}"/>
+                    <p:outputLabel value="Teléfono" />
+                    <p:inputText value="#{clienteControl.cliente.idPersona.telefono}"/>
+                    <p:outputLabel value="Correo" />
+                    <p:inputText value="#{clienteControl.cliente.idPersona.correo}"/>
+                    <p:outputLabel value="Ruc o cedula" />
+                    <p:inputText value="#{clienteControl.cliente.cedula}"/>
+               
+                    <b:formGroup> 
+                        <b:selectOneMenu id="option" value="#{detalleFacturaControl.idEmpleado}" >
+                        <f:selectItem itemLabel="Seleccione Quien Atendio" itemValue=""/>
+                        <f:selectItems value="#{detalleFacturaControl.selectItemEmpleado}" var="item" itemValue="#{item.value}" itemLabel="#{item.label}" />
+                    </b:selectOneMenu>
+                        </b:formGroup>
+                  </b:panelGrid>
+                
+              
+                
+                     <b:panelGrid columns="3">
+                         
+                         
+                           <b:formGroup> 
+                    <b:selectOneMenu id="option2" value="#{detalleFacturaControl.idProducto}" >
+                        <f:selectItem itemLabel="Seleccione Producto" itemValue=""/>
+                        <f:selectItems value="#{detalleFacturaControl.selectItemProducto}" var="item" itemValue="#{item.value}" itemLabel="#{item.label}" />
+                    </b:selectOneMenu>
+                        </b:formGroup>
+                         
+                         <p:outputLabel value="Cantidad" />
+                         <p:inputText value="#{detalleFacturaControl.detalleFactura.cantidad}"/>
+                         
+                       
+                     </b:panelGrid>
+                
+                <b:panelGrid columns="2">
+                      <p:commandButton value="Añadir Producto" action="#{detalleFacturaControl.añadirProducto()}" 
+                                     update="@form" />
+                    
+                         <p:commandButton value="Añadir Cliente" action="#{detalleFacturaControl.añadirCliente()}" 
+                                     update="@form" />
+                     
+                 </b:panelGrid>
+                
+                 <b:panelGrid columns="2">
+                    
+                         <p:commandButton value="Confirmar la Compra" action="#{detalleFacturaControl.guardar()}" 
+                                     update="@form" />
+                 </b:panelGrid>
+            </b:panel> 
+            
+            
+            
+            <b:panel>
+                <p:dataTable value="#{detalleFacturaControl.listaDetalleFactura}" var="detallef" >
+                    <p:column headerText="Detalle" >
+                        <p:outputLabel value="#{detallef.idDetalleFactura}" /> 
+                    </p:column>
+                    <p:column headerText="Producto" >
+                        <p:outputLabel value="#{detallef.idProducto.nombre}"/> 
+                    </p:column>
+              <p:column headerText="Precio Unitario" >
+                  <p:outputLabel value="#{detallef.idProducto.precion}"/> 
+                    </p:column>
+                    <p:column headerText="Cantidad" >
+                        <p:outputLabel value="#{detallef.cantidad}"/> 
+                    </p:column>
+                </p:dataTable>
+                
+            </b:panel>
+            
+             <b:panel>
+                 <p:dataTable value="#{detalleFacturaControl.listaDetalleFactura}" var="detallefac" >
+                    <p:column headerText="Subtotal" >
+                        <p:outputLabel value="#{detallefac.subtotal}" /> 
+                    </p:column>
+                    <p:column headerText="Iva" >
+                        <p:outputLabel value="#{detallefac.iva}"/> 
+                    </p:column>
+              <p:column headerText="Precio Unitario" >
+                  <p:outputLabel value="#{detallefac.total}"/> 
+                    </p:column>
+                    
+                </p:dataTable>
+                
+            </b:panel>
+            
+        </h:form>
+    </ui:define>
+</ui:composition>

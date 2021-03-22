@@ -20,7 +20,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -38,47 +37,35 @@ public class Producto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_producto")
-    private Long idProducto;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
+    private Integer idProducto;
+    @Size(max = 200)
     @Column(name = "nombre")
     private String nombre;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "estado")
-    private boolean estado;
+    private Boolean estado;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "precion")
+    private Double precion;
     @OneToMany(mappedBy = "idProducto", fetch = FetchType.LAZY)
-    private List<Venta> ventaList;
-    @JoinColumn(name = "id_caracteristica_producto", referencedColumnName = "id_caracteristica_producto")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private CaracteristicaProducto idCaracteristicaProducto;
+    private List<DetalleFactura> detalleFacturaList;
     @JoinColumn(name = "id_categoria_producto", referencedColumnName = "id_categoria_producto")
     @ManyToOne(fetch = FetchType.LAZY)
     private CategoriaProducto idCategoriaProducto;
     @OneToMany(mappedBy = "idProducto", fetch = FetchType.LAZY)
     private List<DetalleBodega> detalleBodegaList;
-    @OneToMany(mappedBy = "idProducto", fetch = FetchType.LAZY)
-    private List<DetalleDocumentacion> detalleDocumentacionList;
 
     public Producto() {
     }
 
-    public Producto(Long idProducto) {
+    public Producto(Integer idProducto) {
         this.idProducto = idProducto;
     }
 
-    public Producto(Long idProducto, String nombre, boolean estado) {
-        this.idProducto = idProducto;
-        this.nombre = nombre;
-        this.estado = estado;
-    }
-
-    public Long getIdProducto() {
+    public Integer getIdProducto() {
         return idProducto;
     }
 
-    public void setIdProducto(Long idProducto) {
+    public void setIdProducto(Integer idProducto) {
         this.idProducto = idProducto;
     }
 
@@ -90,28 +77,28 @@ public class Producto implements Serializable {
         this.nombre = nombre;
     }
 
-    public boolean getEstado() {
+    public Boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 
-    public List<Venta> getVentaList() {
-        return ventaList;
+    public Double getPrecion() {
+        return precion;
     }
 
-    public void setVentaList(List<Venta> ventaList) {
-        this.ventaList = ventaList;
+    public void setPrecion(Double precion) {
+        this.precion = precion;
     }
 
-    public CaracteristicaProducto getIdCaracteristicaProducto() {
-        return idCaracteristicaProducto;
+    public List<DetalleFactura> getDetalleFacturaList() {
+        return detalleFacturaList;
     }
 
-    public void setIdCaracteristicaProducto(CaracteristicaProducto idCaracteristicaProducto) {
-        this.idCaracteristicaProducto = idCaracteristicaProducto;
+    public void setDetalleFacturaList(List<DetalleFactura> detalleFacturaList) {
+        this.detalleFacturaList = detalleFacturaList;
     }
 
     public CategoriaProducto getIdCategoriaProducto() {
@@ -128,14 +115,6 @@ public class Producto implements Serializable {
 
     public void setDetalleBodegaList(List<DetalleBodega> detalleBodegaList) {
         this.detalleBodegaList = detalleBodegaList;
-    }
-
-    public List<DetalleDocumentacion> getDetalleDocumentacionList() {
-        return detalleDocumentacionList;
-    }
-
-    public void setDetalleDocumentacionList(List<DetalleDocumentacion> detalleDocumentacionList) {
-        this.detalleDocumentacionList = detalleDocumentacionList;
     }
 
     @Override

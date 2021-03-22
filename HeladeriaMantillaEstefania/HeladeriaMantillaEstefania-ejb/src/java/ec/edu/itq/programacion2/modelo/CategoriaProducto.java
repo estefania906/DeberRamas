@@ -18,7 +18,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -36,37 +35,30 @@ public class CategoriaProducto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_categoria_producto")
-    private Long idCategoriaProducto;
+    private Integer idCategoriaProducto;
     @Size(max = 20)
     @Column(name = "nombre")
     private String nombre;
     @Size(max = 100)
     @Column(name = "descripcion")
     private String descripcion;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "estado")
-    private boolean estado;
+    private Boolean estado;
     @OneToMany(mappedBy = "idCategoriaProducto", fetch = FetchType.LAZY)
     private List<Producto> productoList;
 
     public CategoriaProducto() {
     }
 
-    public CategoriaProducto(Long idCategoriaProducto) {
+    public CategoriaProducto(Integer idCategoriaProducto) {
         this.idCategoriaProducto = idCategoriaProducto;
     }
 
-    public CategoriaProducto(Long idCategoriaProducto, boolean estado) {
-        this.idCategoriaProducto = idCategoriaProducto;
-        this.estado = estado;
-    }
-
-    public Long getIdCategoriaProducto() {
+    public Integer getIdCategoriaProducto() {
         return idCategoriaProducto;
     }
 
-    public void setIdCategoriaProducto(Long idCategoriaProducto) {
+    public void setIdCategoriaProducto(Integer idCategoriaProducto) {
         this.idCategoriaProducto = idCategoriaProducto;
     }
 
@@ -86,11 +78,11 @@ public class CategoriaProducto implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public boolean getEstado() {
+    public Boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 

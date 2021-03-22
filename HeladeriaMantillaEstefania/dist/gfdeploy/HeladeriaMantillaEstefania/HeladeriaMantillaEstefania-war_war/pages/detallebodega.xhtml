@@ -1,0 +1,94 @@
+<ui:composition 
+    template="../template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:b="http://bootsfaces.net/ui">
+    <ui:define name="content">
+        <h:form id="frmDetalleBodega">
+            <p:messages id="msg" />
+            <b:panel>
+                <b:panelGrid columns="2">
+                 <p:outputLabel value="Detalle Bodega" />
+                    <b:formGroup> 
+                    <b:selectOneMenu id="option" value="#{detalleBodegaControl.idProducto}" >
+                        <f:selectItem itemLabel="Seleccione Producto" itemValue=""/>
+                        <f:selectItems value="#{detalleBodegaControl.selectItemProducto}" var="item" itemValue="#{item.value}" itemLabel="#{item.label}" />
+                    </b:selectOneMenu>
+                        </b:formGroup>
+                    <p:outputLabel value="Precio Compra" />
+                    <p:inputText value="#{detalleBodegaControl.detalleBodega.precioCompra}" />
+                 
+                    
+                     <p:outputLabel value="Fecha de Producción" />
+                     <p:inputText value="#{detalleBodegaControl.detalleBodega.fechaProduccion}" />
+                    <p:outputLabel value="Fecha de Vencimiento" />
+                    <p:inputText value="#{detalleBodegaControl.detalleBodega.fechaVencimiento}" />
+                    
+                    <p:outputLabel value="Stock Inicial" />
+                    <p:inputText value="#{detalleBodegaControl.detalleBodega.stockInicial}" />
+                    
+                    <p:outputLabel value="Salidas" />
+                    <p:inputText value="#{detalleBodegaControl.detalleBodega.salidas}" />
+                  
+                    <p:outputLabel value="Bodega" />
+                    <b:formGroup> 
+                        <b:selectOneMenu id="option1" value="#{detalleBodegaControl.idBodega}" >
+                        <f:selectItem itemLabel="Seleccione Bodega" itemValue=""/>
+                        <f:selectItems value="#{detalleBodegaControl.selectItemBodega}" var="item" itemValue="#{item.value}" itemLabel="#{item.label}" />
+                    </b:selectOneMenu>
+                        </b:formGroup>
+
+                    
+                    
+                    
+                    <p:commandButton value="Guardar" action="#{detalleBodegaControl.guardar()}" 
+                                     update="@form" />
+                </b:panelGrid>
+            </b:panel> 
+            <b:panel>
+                <p:dataTable value="#{detalleBodegaControl.listaDetalleBodega}" var="detalle" >
+                    <p:column headerText="Detalle" >
+                        <p:outputLabel value="#{detalle.idDetalleBodega}" /> 
+                    </p:column>
+                    <p:column headerText="Producto" >
+                        <p:outputLabel value="#{detalle.idProducto.nombre}"/> 
+                    </p:column>
+              <p:column headerText="Precio Compra" >
+                  <p:outputLabel value="#{detalle.precioCompra}"/> 
+                    </p:column>
+                    <p:column headerText="Precio Venta" >
+                        <p:outputLabel value="#{detalle.idProducto.precion}" /> 
+                    </p:column>
+                    <p:column headerText="Fecha Produccion" >
+                        <p:outputLabel value="#{detalle.fechaProduccion}" /> 
+                    </p:column>
+                    
+                    <p:column headerText="Fecha Vencimiento" >
+                        <p:outputLabel value="#{detalle.fechaVencimiento}" /> 
+                    </p:column>
+                    
+                    <p:column headerText="Stock Inicial" >
+                        <p:outputLabel value="#{detalle.stockInicial}" /> 
+                    </p:column>
+                    
+                    <p:column headerText="Salidas" >
+                        <p:outputLabel value="#{detalle.salidas}" /> 
+                    </p:column>
+                    
+                    <p:column headerText="Stock Final" >
+                        <p:outputLabel value="#{detalle.stockFinal}" /> 
+                    </p:column>
+                    
+                    <p:column headerText="Bodega" >
+                        <p:outputLabel value="#{detalle.idBodega.direccion}" /> 
+                    </p:column>
+                </p:dataTable>
+                
+            </b:panel>
+            
+        </h:form>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,63 @@
+<ui:composition 
+    template="../template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:b="http://bootsfaces.net/ui">
+    <ui:define name="content">
+        <h:form id="frmBodega">
+            <p:messages id="msg" />
+            <b:panel>
+                <b:panelGrid columns="2">
+                
+                    <p:outputLabel value="Código de la Bodega" />
+                    <p:inputText value="#{bodegaControl.bodega.serie}" />
+               
+                    <p:outputLabel value="Dirección" />
+                    <p:inputText value="#{bodegaControl.bodega.direccion}" />
+                    
+                    
+                    <p:selectOneMenu id="option" value="#{bodegaControl.idEmpleado}" >
+                        <f:selectItem itemLabel="Seleccionar El identificador del Empleado" itemValue=""/>
+                        <f:selectItems value="#{bodegaControl.selectItemEmpleado}" var="item" itemValue="#{item.value}" itemLabel="#{item.label}" />
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Estado" />
+                    <p:selectBooleanCheckbox value="#{bodegaControl.bodega.estado}"/>
+                    <p:commandButton value="Guardar" action="#{bodegaControl.guardar()}" 
+                                     update="@form" />
+                </b:panelGrid>
+            </b:panel> 
+            <b:panel>
+                <p:dataTable value="#{bodegaControl.listaBodega}" var="bodega" >
+                    <p:column headerText="Bodega" >
+                        <p:outputLabel value="#{bodega.idBodega}" /> 
+                    </p:column>
+                    <p:column headerText="Código" >
+                        <p:outputLabel value="#{bodega.serie}" /> 
+                    </p:column>
+                    <p:column headerText="Dirección" >
+                        <p:outputLabel value="#{bodega.direccion}" /> 
+                    </p:column>
+                    
+                    <p:column headerText="Nombres del Encargado" >
+                        <p:outputLabel value="#{bodega.idEmpleado.idPersona.nombres}"/> 
+                    </p:column>
+              <p:column headerText="Apellidos del Encargado" >
+                  <p:outputLabel value="#{bodega.idEmpleado.idPersona.apellidos}"/> 
+                    </p:column>
+                    <p:column headerText="Estado" >
+                        <p:outputLabel value="#{bodega.estado}" /> 
+                    </p:column>
+                    <p:column headerText="Actualizar" >
+                        <p:commandButton value="Actualizar" action="#{bodegaControl.actualizar(bodega)}"
+                                         process="@this" update="@form"/> 
+                    </p:column>
+                </p:dataTable>
+                
+            </b:panel>
+            
+        </h:form>
+    </ui:define>
+</ui:composition>

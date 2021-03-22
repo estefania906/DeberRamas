@@ -1,0 +1,50 @@
+<ui:composition 
+    template="../template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:b="http://bootsfaces.net/ui">
+    <ui:define name="content">
+        <h:form id="frmCategoriaProducto">
+            <p:messages id="msg" />
+            <b:panel>
+                <b:panelGrid columns="1">
+          
+                    
+                    <p:outputLabel value="Nombre" />
+                    <p:inputText value="#{categoriaProductoControl.categoriaProducto.nombre}"/>
+                     <p:outputLabel value="Descripcion" />
+                     <p:inputText value="#{categoriaProductoControl.categoriaProducto.descripcion}" />
+                    <p:outputLabel value="Estado" />
+                    <p:selectBooleanCheckbox value="#{categoriaProductoControl.categoriaProducto.estado}"/>
+                    <p:commandButton value="Guardar" action="#{categoriaProductoControl.guardar()}" 
+                                     update="@form" />
+                </b:panelGrid>
+            </b:panel> 
+            <b:panel>
+                <p:dataTable value="#{categoriaProductoControl.listCategoriaProducto}" var="categoria" >
+                    <p:column headerText=" Categoria Producto" >
+                        <p:outputLabel value="#{categoria.idCategoriaProducto}" /> 
+                    </p:column>
+                    <p:column headerText="Nombre" >
+                        <p:outputLabel value="#{categoria.nombre}"/> 
+                    </p:column>
+              <p:column headerText="Descripcion" >
+                  <p:outputLabel value="#{categoria.descripcion}"/> 
+                    </p:column>
+                    <p:column headerText="Estado" >
+                        <p:outputLabel value="#{categoria.estado}" /> 
+                    </p:column>
+                    <p:column headerText="Actualizar" >
+                        <p:commandButton value="Actualizar" action="#{categoriaProductoControl.guardar()}"
+                                         process="@this" update="@form"/> 
+                    </p:column>
+                </p:dataTable>
+                
+            </b:panel>
+            
+        </h:form>
+    </ui:define>
+</ui:composition>

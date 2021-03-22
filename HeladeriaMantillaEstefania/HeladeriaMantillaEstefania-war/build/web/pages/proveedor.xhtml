@@ -1,0 +1,65 @@
+<ui:composition 
+    template="../template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:b="http://bootsfaces.net/ui">
+    <ui:define name="content">
+        <h:form id="frmProveedor">
+            <p:messages id="msg" />
+            <b:panel>
+                <b:panelGrid columns="2">
+                
+                    
+                    <p:outputLabel value="Razon Social" />
+                    <p:inputText value="#{proveedorControl.proveedor.razonSocial}"/>
+                     <p:outputLabel value="Sector Comercial" />
+                     <p:inputText value="#{proveedorControl.proveedor.sectorComercial}" />
+                    <p:outputLabel value="Nombre del Contacto" />
+                    <p:inputText value="#{proveedorControl.proveedor.nombre}" />
+                    <p:outputLabel value="Dirección" />
+                    <p:inputText value="#{proveedorControl.proveedor.direccion}" />
+                    <p:outputLabel value="Teléfono" />
+                    <p:inputText value="#{proveedorControl.proveedor.telefono}" />
+                    
+                  
+                    <p:commandButton value="Guardar" action="#{proveedorControl.guardar()}" 
+                                     update="@form" />
+                </b:panelGrid>
+            </b:panel> 
+            <b:panel>
+                <p:dataTable value="#{proveedorControl.listProveedor}" var="proveedor" >
+                    <p:column headerText="Proveedor" >
+                        <p:outputLabel value="#{proveedor.idProveedor}" /> 
+                    </p:column>
+                    <p:column headerText="Razón Social" >
+                        <p:outputLabel value="#{proveedor.razonSocial}"/> 
+                    </p:column>
+              <p:column headerText="Sector Comercial" >
+                  <p:outputLabel value="#{proveedor.sectorComercial}"/> 
+                    </p:column>
+              <p:column headerText="Nombres del Contacto" >
+                  <p:outputLabel value="#{proveedor.nombre}"/> 
+                    </p:column>
+                    <p:column headerText="Direccion" >
+                        <p:outputLabel value="#{proveedor.direccion}"/> 
+                    </p:column>
+              <p:column headerText="Telefono" >
+                  <p:outputLabel value="#{proveedor.telefono}"/> 
+                    </p:column>
+              
+                    
+                    
+                    <p:column headerText="Actualizar" >
+                        <p:commandButton value="Actualizar" action="#{proveedorControl.actualizar(proveedor)}"
+                                         process="@this" update="@form"/> 
+                    </p:column>
+                </p:dataTable>
+                
+            </b:panel>
+            
+        </h:form>
+    </ui:define>
+</ui:composition>
